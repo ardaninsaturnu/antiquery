@@ -1,6 +1,7 @@
 ##### Mehmet Arda Çelik
 
-## Booquery book store management software
+## Booquery
+#### book store management software
 
 This project creating for book shops that help management stock. Project is consist of products list, autharization, CRUD products transition
 filter by name and categories, sort by name and price.
