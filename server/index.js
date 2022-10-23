@@ -1,19 +1,40 @@
+/*
+import http from 'http';
+const host = '127.0.0.1';
+const port = 3000;
+
+const server = http.createServer(( request, response ) => {
+  response.statusCode = 200;
+  response.setHeader( 'Content-Type', 'text/plain' );
+  response.end('Mehmet Arda Çelik büyülü sikine hoşgeldin');
+})
+
+server.listen( port, host, () => {
+  console.log( `server listening on http://${host}:${port}...` )
+} )
+
+*/
+
 import express from 'express';
-import bodyParser from "body-parser";
-import mongoose from "mongoose";
-import cors from 'cors';
+import {aktorler} from './data.js';
 
-const app = express();
+const server = express();
 
-app.use( bodyParser.json( { limit: "30mb", extended: true } ) );
-app.use( bodyParser.urlencoded( {limit: "30mb", extended: true } ) );
-app.use( cors() );
+server.get('/', (req, res) => {
+    res.send('burası all data')
+});
 
-const CONNECTION_URL = 'mongodb+srv://booquery:booquery123@booquery.41s5lir.mongodb.net/?retryWrites=true&w=majority';
-const PORT = process.env.PORT || 5000;
+server.get('/aktorler', (req, res) => {
+  res.status(200 ).json(aktorler);
+})
 
-mongoose.connect( CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true } )
-    .then( () => app.listen(PORT, () => console.log( `server running on ${PORT}` )))
-    .catch( error => console.log( error.message ))
+server.get('/aktorler/:id', ( req, res) => {
+  const { id } = req.params;
+  const aktor = aktorler.find( aktor => aktor.id === Number( id ) );
+  aktor ? res.status(200).json( aktor ) : res.status( 404 ).send( 'aradığınız aktör bulunamadı' );
+})
 
-mongoose.set('useFindAndModify',false)
+server.listen( 4000, () => {
+   console.log(  `server listening on http://localhost:5000 ...` );
+})
+
