@@ -1,40 +1,13 @@
-/*
-import http from 'http';
-const host = '127.0.0.1';
-const port = 3000;
-
-const server = http.createServer(( request, response ) => {
-  response.statusCode = 200;
-  response.setHeader( 'Content-Type', 'text/plain' );
-  response.end('Mehmet Arda Çelik büyülü sikine hoşgeldin');
-})
-
-server.listen( port, host, () => {
-  console.log( `server listening on http://${host}:${port}...` )
-} )
-
-*/
-
 import express from 'express';
-import {aktorler} from './data.js';
+import mongoose from "mongoose";
+import router from "./routes/book-routes.js";
 
-const server = express();
+const app = express();
 
-server.get('/', (req, res) => {
-    res.send('burası all data')
-});
+app.use( '/books', router );
 
-server.get('/aktorler', (req, res) => {
-  res.status(200 ).json(aktorler);
-})
-
-server.get('/aktorler/:id', ( req, res) => {
-  const { id } = req.params;
-  const aktor = aktorler.find( aktor => aktor.id === Number( id ) );
-  aktor ? res.status(200).json( aktor ) : res.status( 404 ).send( 'aradığınız aktör bulunamadı' );
-})
-
-server.listen( 4000, () => {
-   console.log(  `server listening on http://localhost:5000 ...` );
-})
-
+mongoose
+  .connect("mongodb+srv://booquery:booquery123@cluster0.cnsamjg.mongodb.net/?retryWrites=true&w=majority" )
+    .then( () => console.log('Connected to Database') )
+    .then( () => app.listen(4000) )
+    .catch( err => console.log( err ) );
