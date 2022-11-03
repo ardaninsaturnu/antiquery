@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import router from "./routes/book-routes.js";
 
 const app = express();
-
+app.use( express.json() );
 app.use( '/books', router );
 
 mongoose

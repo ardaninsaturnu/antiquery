@@ -1,6 +1,7 @@
 import Book from "../model/Book.js";
 
-const getAllBooks = async ( req, res, next ) => {
+// get All Books controller
+export const getAllBooks = async ( req, res, next ) => {
   let books;
   
   try {
@@ -16,4 +17,30 @@ const getAllBooks = async ( req, res, next ) => {
   return res.status(200).json( { books } )
 }
 
-export default getAllBooks;
+// addBook controller
+export const addBook = async ( req, res, next ) => {
+  const { name, author, description, price, available } = req.body;
+  let book;
+  
+  try {
+    book = new Book({
+      name,
+      author,
+      description,
+      price,
+      available
+    })
+    
+    await book.save();
+    
+  } catch (e){
+    console.log(e)
+  }
+  
+  if (!book){
+    return res.status(500).json({ message: 'Unable to add' })
+  }
+  
+  return res.status( 201 ).json({ book })
+}
+
