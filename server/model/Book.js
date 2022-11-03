@@ -24,9 +24,8 @@ const bookSchema = new Schema({
   },
   
   available: {
-    type: Boolean,
-    required: true
+    type: Boolean
   }
 });
 
-export default mongoose.model('Book',bookSchema);
+export default mongoose.model('Book', bookSchema );
