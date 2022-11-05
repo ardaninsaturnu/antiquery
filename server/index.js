@@ -1,10 +1,10 @@
 import express from 'express';
 import mongoose from "mongoose";
-import router from "./routes/book-routes.js";
+import bookRouter from "./routes/book-routes.js";
 
 const app = express();
 app.use( express.json() );
-app.use( '/books', router );
+app.use( '/books', bookRouter );
 
 mongoose
   .connect("mongodb+srv://booquery:booquery123@cluster0.cnsamjg.mongodb.net/?retryWrites=true&w=majority" )

@@ -19,7 +19,7 @@ export const getAllBooks = async ( req, res, next ) => {
 
 // addBook controller
 export const addBook = async ( req, res, next ) => {
-  const { name, author, description, price, available } = req.body;
+  const { name, author, description, price, available, image } = req.body;
   let book;
   
   try {
@@ -28,7 +28,8 @@ export const addBook = async ( req, res, next ) => {
       author,
       description,
       price,
-      available
+      available,
+      image
     })
     
     await book.save();
@@ -66,7 +67,7 @@ export const getBook = async ( req, res, next ) => {
 // update book controller
 export const updateBook = async ( req, res, next ) => {
   const id = req.params.id;
-  const { name, author, description, price, available } = req.body;
+  const { name, author, description, price, available, image } = req.body;
   let book;
   
   try {
@@ -75,7 +76,8 @@ export const updateBook = async ( req, res, next ) => {
       author,
       description,
       price,
-      available
+      available,
+      image
     } );
     
     book = await book.save();
@@ -104,5 +106,5 @@ export const deleteBook = async ( req, res, next ) => {
     return res.status(404).json( {message: 'no deleted item'} )
   }
   
-  return res.status(200).json({book})
+  return res.status(200).json({ message: 'book deleted successfully' })
 }
