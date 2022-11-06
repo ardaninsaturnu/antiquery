@@ -5,6 +5,7 @@ import App from "./App";
 import './index.css';
 import Detail from "./Pages/Detail";
 import Home from "./Pages/Home";
+import Create from "./Pages/Create";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: '/detail',
         element: <Detail/>
+      },
+      {
+        path: '/create-product',
+        element: <Create/>
       }
     ]
   }
