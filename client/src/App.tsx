@@ -1,10 +1,12 @@
 import React from 'react';
+import Layout from "./Components/Layout";
+import {Outlet} from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      Booquery super app
-    </div>
+    <Layout>
+      <Outlet/>
+    </Layout>
   );
 }
 
