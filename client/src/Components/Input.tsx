@@ -1,16 +1,18 @@
 import * as React from 'react';
-import {Switch} from "@headlessui/react";
-import {useState} from "react";
+import { Switch } from "@headlessui/react";
+import { useState } from "react";
 
 type Props = {
   label: string,
   name: string,
   placeholder?: string,
-  type?: string
+  type?: string,
+  value?: any,
+  setValue?: () => void
 };
 
-export const Input = ({ label, name, placeholder, type } : Props) => {
-  const [ enabled, setEnabled ] = useState<boolean>(false );
+export const Input = ({ label, name, placeholder, type, value, setValue } : Props ) => {
+  const [ enabled, setEnabled ] = useState<boolean>( false );
 
   return (
       <div className="mb-4">
@@ -33,7 +35,11 @@ export const Input = ({ label, name, placeholder, type } : Props) => {
           </Switch>
         ) : <input
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id={name} type={ type || 'text' } placeholder={ placeholder || name }/>}
+          id={name}
+          type={ type || 'text' }
+          placeholder={ placeholder || name }
+          value={value}
+        />}
       </div>
   );
 };
