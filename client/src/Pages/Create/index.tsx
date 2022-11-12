@@ -1,6 +1,8 @@
 import React from 'react';
+import bookcase from "../../Assets/Images/bookcase.jpg";
 import {Input} from "../../Components/Input";
 import Button from "../../Components/Button";
+<<<<<<< HEAD
 import bookcase from "../../Assets/Images/bookcase.jpg";
 import {useForm} from "../../hooks/useForm";
 
@@ -21,6 +23,10 @@ const Create = () => {
         }
       }
   })
+=======
+
+const Create = () => {
+>>>>>>> b810d3ad (rearranged all components.)
 
   return (
     <div className="py-5" style={{background: `url(${bookcase})`, backgroundSize:'contain'}}>
