@@ -6,13 +6,12 @@ type Props = {
   label: string,
   name: string,
   placeholder?: string,
-  type?: string,
-  value?: any,
-  setValue?: () => void
+  type?: string
 };
 
-export const Input = ({ label, name, placeholder, type, value, setValue } : Props ) => {
+export const Input = ({ label, name, placeholder, type } : Props ) => {
   const [ enabled, setEnabled ] = useState<boolean>( false );
+  const [ value, setValue ] = useState<any>('');
 
   return (
       <div className="mb-4">
@@ -21,8 +20,9 @@ export const Input = ({ label, name, placeholder, type, value, setValue } : Prop
         </label>
         {  type === 'checkbox' ? (
           <Switch
+            name={name}
             checked={enabled}
-            onChange={setEnabled}
+            onChange={ () => setEnabled( !enabled ) }
             className={`${enabled ? 'bg-teal-900' : 'bg-teal-700'}
           relative inline-flex h-[38px] w-[74px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
           >
@@ -36,9 +36,11 @@ export const Input = ({ label, name, placeholder, type, value, setValue } : Prop
         ) : <input
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id={name}
+          name={name}
           type={ type || 'text' }
           placeholder={ placeholder || name }
           value={value}
+          onChange={ (e : React.ChangeEvent <HTMLInputElement>) => setValue( e.target.value )}
         />}
       </div>
   );
