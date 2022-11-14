@@ -3,15 +3,6 @@ import bookcase from "../../Assets/Images/bookcase.jpg";
 import {Input} from "../../Components/Input";
 import Button from "../../Components/Button";
 
-type FormElement  = {
-  name : string,
-  author: string,
-  description: string,
-  price: number,
-  available: boolean,
-  image: string
-}
-
 const Create = () => {
   const handleSubmit = async ( e : React.FormEvent <HTMLFormElement> ) => {
     e.preventDefault();
@@ -34,7 +25,18 @@ const Create = () => {
       image: target.image.value
     }
 
-    console.log(formData)
+    let data = new FormData();
+    data.append("json", JSON.stringify( formData ))
+
+    console.log(data)
+
+    await fetch('http://localhost:4000/books',{
+      method: 'POST',
+      body: data,
+      mode: "no-cors"
+    })
+      .then(function(res){ return res.json(); })
+      .then(function(data){ alert( JSON.stringify( data ) ) })
 
   }
 
