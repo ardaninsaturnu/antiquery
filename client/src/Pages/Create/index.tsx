@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import bookcase from "../../Assets/Images/bookcase.jpg";
 import {Input} from "../../Components/Input";
 import Button from "../../Components/Button";
 
 const Create = () => {
+
   const handleSubmit = async ( e : React.FormEvent <HTMLFormElement> ) => {
     e.preventDefault();
 
@@ -50,7 +51,7 @@ const Create = () => {
          <Input label="description" name="description" type="text" />
          <Input label="price" name="price" type="number" />
          <Input label="available" name="available" type="checkbox" />
-         <Input label="image" name="image" type="file" />
+         <Input label="image" name="image" type="text" />
          <Button name="Ekle" buttonStyle='boolue' type="submit"/>
        </form>
      </div>
