@@ -1,6 +1,6 @@
 ##### Mehmet Arda Çelik
 
-## Booquery
+## antiQuery
 ### book store management software
 
 This project creating for book shops that help management stock. Project is consist of products list, autharization, CRUD products transition
@@ -64,7 +64,7 @@ npm start
 ## View
 
 to view project last version click this
-url : [mehmetardacelik-reactjs.vercel.app](https://mehmetardacelik-reactjs.vercel.app)
+url : [booquery.vercel.app]
 
 ### Commits Explanation
 
