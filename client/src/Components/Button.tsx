@@ -20,7 +20,7 @@ const setButtonStyle = ( style: string ) => {
 const Button = ( { name, icon, click, buttonStyle, type } : PropTypes ) => {
 
   return (
-    <button type={ type || 'button' } onClick={ click } className={setButtonStyle( buttonStyle )}>
+    <button type={ type || 'button' } onClick={ click } className={ setButtonStyle( buttonStyle ) }>
       { icon ?? icon }
       {name}
     </button>
