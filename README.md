@@ -64,7 +64,7 @@ npm start
 ## View
 
 to view project last version click this
-url : [booquery.vercel.app]
+url : <a href="booquery.vercel.app">for Antiquery follow this</a>
 
 ### Commits Explanation
 
