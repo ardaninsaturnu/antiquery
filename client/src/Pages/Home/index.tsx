@@ -23,9 +23,9 @@ const Home = () => {
 
   return (
     <>
-      { books && books.map( (a : any, index : number ) => (
+      { books && books.map( ( a : any, index : number ) => (
         <div key={index}>
-          <img src={a.image} width="500" alt="image"/>
+          <img src={ a.image } width="500" alt="image"/>
         </div>
       ) ) }
     </>

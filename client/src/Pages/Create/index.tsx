@@ -26,19 +26,18 @@ const Create = () => {
       image: target.image.value
     }
 
-    let data = new FormData();
-    data.append("json", JSON.stringify( formData ))
+    let formValues = new FormData();
+    formValues.append('json', JSON.stringify( formData ))
 
-    console.log(data)
+    console.log( formData,formValues,'tell me about data why isnt work')
 
-    await fetch('http://localhost:4000/books',{
+    const response = await fetch('http://localhost:4000/books',{
       method: 'POST',
-      body: data,
-      mode: "no-cors"
+      body: formValues,
+      mode: "cors"
     })
-      .then(function(res){ return res.json(); })
-      .then(function(data){ alert( JSON.stringify( data ) ) })
 
+    console.log(response)
   }
 
   return (
