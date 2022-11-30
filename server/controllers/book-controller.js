@@ -1,3 +1,5 @@
+
+/*
 import Book from "../model/Book.js";
 
 // get All Books controller
@@ -19,7 +21,7 @@ export const getAllBooks = async ( req, res, next ) => {
 
 // addBook controller
 export const addBook = async ( req, res, next ) => {
-  const { name, author, description, price, available, image } = req.body;
+  const { name, author, description, price, available, image } = req.body.json;
   let book;
   
   try {
@@ -34,11 +36,13 @@ export const addBook = async ( req, res, next ) => {
     
     await book.save();
     
-  } catch (e){
-    console.log(e)
+  } catch (e) {
+    alert(e)
   }
   
-  if (!book){
+  console.log('neredesin',book)
+  if ( req && req.status !== 201 ){
+    alert('bambam')
     return res.status(500).json({ message: 'Unable to add' })
   }
   
@@ -107,4 +111,4 @@ export const deleteBook = async ( req, res, next ) => {
   }
   
   return res.status(200).json({ message: 'book deleted successfully' })
-}
+}*/

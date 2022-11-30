@@ -1,9 +1,12 @@
-import React, {useState} from 'react';
+import React from 'react';
 import bookcase from "../../Assets/Images/bookcase.jpg";
 import {Input} from "../../Components/Input";
 import Button from "../../Components/Button";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const Create = () => {
+  const history = useNavigate();
 
   const handleSubmit = async ( e : React.FormEvent <HTMLFormElement> ) => {
     e.preventDefault();
@@ -17,27 +20,24 @@ const Create = () => {
       image: { value: string };
     };
 
-    const formData = {
-      name: target.name.value,
-      author: target.name.value,
-      description: target.description.value,
-      price: target.price.value,
-      available: target.available.checked,
-      image: target.image.value
+    const formData  = {
+      name: String(target.name.value),
+      author: String(target.name.value),
+      description: String(target.description.value),
+      price: Number(target.price.value),
+      available: Boolean(target.available.checked),
+      image: String(target.image.value)
     }
 
-    let formValues = new FormData();
-    formValues.append('json', JSON.stringify( formData ))
+    try {
+      await axios.post('http://localhost:4000/books', formData )
+        .then( res => res.data )
+        .then( () => history('/books') )
 
-    console.log( formData,formValues,'tell me about data why isnt work')
+    } catch {
+      alert('something went mamet')
+    }
 
-    const response = await fetch('http://localhost:4000/books',{
-      method: 'POST',
-      body: formValues,
-      mode: "cors"
-    })
-
-    console.log(response)
   }
 
   return (
